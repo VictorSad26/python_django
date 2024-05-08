@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <ul>
+    {% for cliente in clientes %}
+        <li>
+            <h2><a href="{% url 'person_update' cliente.id %}">{{ cliente.first_name }} {{ cliente.last_name }}</a></h2>
+            <h2><a href="{% url 'person_delete' cliente.id %}">DELETAR</a></h2>
+            <p>Idade: {{ cliente.age }}</p>
+            <p>Salário: {{ cliente.salary }}</p>
+            <p>Bio: {{ cliente.bio }}</p>
+        </li>
+    {% empty %}
+        <li>Nenhum cliente encontrado.</li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'person_new' %}">Criar Novo Cliente</a>
+</body>
+</html>
