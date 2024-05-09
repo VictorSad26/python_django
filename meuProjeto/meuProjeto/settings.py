@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "clientes",
+    "home",
 ]
 
 MIDDLEWARE = [
@@ -76,8 +77,12 @@ WSGI_APPLICATION = "meuProjeto.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "gestao_clientes",
+        "USER": "postgres",
+        "PASSWORD": "123456",
+        "HOST": "127.0.0.1",
+        "PORT": "5000",
     }
 }
 
@@ -127,3 +132,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # arquivos de media
 MEDIA_URL = "/media/"
 MEDIA_ROOT = "media"
+
+LOGIN_URL = "/login/"
+
+LOGIN_REDIRECT_URL = "person_list"
+
+LOGOUT_REDIRECT_URL = "home"

@@ -22,10 +22,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import hello
 from .views import pegarDados
+from django.contrib.auth.views import LoginView, LogoutView
+
 
 urlpatterns = [
+    path("", include("home.urls")),
     path("pessoa/<str:nome>", pegarDados),
     path("hello/", hello),
     path("admin/", admin.site.urls),
     path("person/", include("clientes.urls")),  # o include chama de outro arquivo URL
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

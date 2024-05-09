@@ -6,6 +6,10 @@
     <title>Clientes</title>
 </head>
 <body>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <input type="submit" value="Sair">
+    </form>
     <h1>Lista de Clientes</h1>
     <ul>
     {% for cliente in clientes %}
