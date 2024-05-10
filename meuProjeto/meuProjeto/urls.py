@@ -33,4 +33,5 @@ urlpatterns = [
     path("person/", include("clientes.urls")),  # o include chama de outro arquivo URL
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path("usuarios/", include("usuarios.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

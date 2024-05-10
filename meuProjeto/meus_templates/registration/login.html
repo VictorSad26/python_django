@@ -1,15 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Novo Usuário</title>
-</head>
-<body>
-    <h1>Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Seja bem vindo{% endblock %}
+{% block main %}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-12 col-md-6 col-lg-4">
+            <h1 class="text-center">Seja bem vindo!</h1>
+            <h2 class="text-center">Login</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
+                <div class="mb-3" role="alert">
+                    <label for="username" class="form-label">Usuário</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <div class="d-grid gap-2 d-flex">
+                    <a href="{% url 'cadastro' %}" class="btn btn-secondary">Cadastre-se</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

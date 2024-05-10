@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Seja bem vindo{% endblock %}
+
+{% block main %}
     <h1>Seja bem vindo!</h1>
 
     {% if user.is_authenticated %}
@@ -17,5 +14,5 @@
     {% else %}
     <a href="{% url 'login' %}">Login</a>
     {% endif %}
-</body>
-</html>
+
+{% endblock %}

@@ -1,8 +1,11 @@
 .home {
-    display: flex;
     background-color: #f0f0f0;
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px #ccc;
+}
+
+.list-group-item-custom {
+    padding: 120px;
 }

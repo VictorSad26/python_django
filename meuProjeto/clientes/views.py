@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def person_list(request):
-    clientes = Cliente.objects.all()
+    clientes = Cliente.objects.filter(user=request.user)
     return render(request, "clientes.html", {"clientes": clientes})
 
 
@@ -16,7 +16,9 @@ def person_list(request):
 def person_new(request):
     form = ClienteForm(request.POST or None, request.FILES or None)
     if form.is_valid():
-        form.save()  # Salva no banco de dados
+        cliente = form.save(commit=False)
+        cliente.user = request.user
+        cliente.save()  # Salva no banco de dados
         return redirect("person_list")
     return render(request, "form_cliente.html", {"form": form})
 
