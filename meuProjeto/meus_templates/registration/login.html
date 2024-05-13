@@ -16,21 +16,22 @@
                 {% endif %}
                 <div class="mb-3" role="alert">
                     <label for="username" class="form-label">Usuário</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu usuario" required>
+                    <input type="text" class="form-control" id="username" name="username"
+                        placeholder="Digite seu usuario" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Digite sua senha" required>
                 </div>
-                <div class="d-grid gap-2 mb-3">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
-                <div class="d-grid gap-2 d-flex">
-                    <a href="{% url 'cadastro' %}" class="btn btn-secondary">Cadastre-se</a>
-                </div>
-            </form>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+                <a href="{% url 'cadastro' %}" class="btn btn-secondary">Cadastre-se</a>
+                <a href="{% url 'home' %}" class="btn btn-info">Voltar a home</a>
+
         </div>
+        </form>
     </div>
+</div>
 </div>
 
 {% endblock %}

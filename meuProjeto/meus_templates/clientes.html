@@ -5,14 +5,14 @@
 <div class="list-group-item-custom">
     <div class="container list-group-item-custom">
         <div class="d-flex justify-content-between align-items-center my-4">
-            <h1>Lista de Clientes</h1>
+            <h1 class="roboto-thin">Lista de Clientes</h1>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <input type="submit" value="Sair" class="btn btn-primary">
             </form>
         </div>
         <div class="list-group">
-        {% for cliente in request.user.clientes.all %}
+            {% for cliente in request.user.clientes.all %}
             <div class="list-group-item ">
                 <div class="d-flex align-items-start justify-content-between">
                     <div>
@@ -20,16 +20,26 @@
                         <p class="mb-1">Idade: {{ cliente.age }}</p>
                         <p class="mb-1">Salário: {{ cliente.salary }}</p>
                         <p class="mb-1">Bio: {{ cliente.bio }}</p>
+                        {% if cliente.photo %}
+                        <p class="mb-1">
+                            Foto:
+                            <a href="{{ cliente.photo.url }}" target="_blank" class="btn btn-info">
+                                Abrir imagem
+                            </a>
+                        </p>
+                        {% else %}
+                        <p class="mb-1">Nenhuma foto disponível</p>
+                        {% endif %}
                     </div>
                     <div>
-                    <a href="{% url 'person_delete' cliente.id %}" class="btn btn-danger mt-3">DELETAR</a>
-                    <a href="{% url 'person_update' cliente.id %}" class="btn btn-warning mt-3">EDITAR</a>
+                        <a href="{% url 'person_delete' cliente.id %}" class="btn btn-danger mt-3">DELETAR</a>
+                        <a href="{% url 'person_update' cliente.id %}" class="btn btn-warning mt-3">EDITAR</a>
                     </div>
                 </div>
             </div>
-        {% empty %}
+            {% empty %}
             <div class="list-group-item">Nenhum cliente encontrado.</div>
-        {% endfor %}
+            {% endfor %}
         </div>
         <a href="{% url 'person_new' %}" class="btn btn-primary mt-3">Criar Novo Cliente</a>
     </div>

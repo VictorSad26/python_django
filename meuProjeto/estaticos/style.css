@@ -1,11 +1,155 @@
-.home {
-    background-color: #f0f0f0;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #ccc;
-}
-
 .list-group-item-custom {
     padding: 120px;
 }
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+h1{
+    font-family: Roboto, sans-serif;
+    padding: 100px;
+}
+
+.roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .roboto-thin-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .roboto-light-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .roboto-regular-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .roboto-medium-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .roboto-bold-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .roboto-black-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  .nav-bar-home{
+    background: #201b2c;
+    margin: 30px;
+  }
+  
+  .home{
+    background: #201b2c;
+  }
+  
+  
+
+  .nav-items-interprise-disable:hover{
+    color: #77ffc0;
+  }
+  .nav-items-interprise:hover{
+    color: #201b2c;
+  }
+
+  .nav-items{
+    color: #201b2c;
+    background-color: #77ffc0;
+    border-radius: 8px;
+    font-weight: 400;
+  }
+  .nav-items-disabled{
+    color: #77ffc0;
+  }
+
+  .interprise{
+    color: #77ffc0;
+    font-weight: 800;
+  }
+
+  .login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-login{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login > h1{
+    color: #77ffc0;
+  }
+  .right-login{
+    width: 40vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-animation{
+    width: 40vw;
+  }
+  .card-login{
+    width: 30vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #2f2841;
+    border-radius: 8px;
+    color: #77ffc0;
+    padding: 30px 35px;
+  }
