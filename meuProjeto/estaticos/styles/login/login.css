@@ -1,0 +1,17 @@
+.card-login{
+    background-color: #27292F;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card-login > h1, h2, h3, h4, h5, h6, label{
+    color: #fff;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .card-login{
+        width: 90%;
+    }
+}
+
