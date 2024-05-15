@@ -15,10 +15,14 @@
                             Salário: {{ cliente.salary }}<br>
                             Bio: {{ cliente.bio }}<br>
                             {% if cliente.photo %}
-                            Foto: <img src="{{ cliente.photo.url }}" class="img-fluid" alt="Foto do cliente">
-                            {% else %}
-                            Foto: Nenhuma foto disponível
-                            {% endif %}
+                        <p class="card-text">
+                            <a href="{{ cliente.photo.url }}" target="_blank" class="btn btn-info">
+                                Abrir imagem
+                            </a>
+                        </p>
+                        {% else %}
+                        <p class="card-text">Nenhuma foto disponível</p>
+                        {% endif %}
                         </p>
                         <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
