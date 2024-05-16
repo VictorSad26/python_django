@@ -49,7 +49,7 @@
                             <span class="input-group-text">👤</span>
                             <input type="text" class="form-control" placeholder="Nome do cliente"
                                 aria-label="nome do cliente" aria-describedby="addon-wrapping" name="first_name"
-                                id="first_name">
+                                id="first_name" required>
                         </div>
                     </div>
                     <div class="mb-3" role="alert">
@@ -57,8 +57,8 @@
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text">👤</span>
                             <input type="text" class="form-control" placeholder="Sobrenome do cliente"
-                                aria-label="last_name" aria-describedby="addon-wrapping" name="last_name"
-                                id="last_name">
+                                aria-label="last_name" aria-describedby="addon-wrapping" name="last_name" id="last_name"
+                                required>
                         </div>
                     </div>
                     <div class="mb-3" role="alert">
@@ -66,15 +66,16 @@
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text">🔞</span>
                             <input type="number" class="form-control" placeholder="Idade do cliente"
-                                aria-label="Username" aria-describedby="addon-wrapping" name="age" id="age">
+                                aria-label="Username" aria-describedby="addon-wrapping" name="age" id="age" required>
                         </div>
                     </div>
                     <div class="mb-3" role="alert">
                         <label for="salary" class="form-label">Salário</label>
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text">💸</span>
-                            <input type="text" class="form-control" placeholder="Salário do cliente" aria-label="salary"
-                                aria-describedby="addon-wrapping" name="salary" id="salary">
+                            <input type="number" class="form-control" placeholder="Salário do cliente"
+                                aria-label="salary" aria-describedby="addon-wrapping" name="salary" id="salary"
+                                required>
                         </div>
                     </div>
                     <div class="mb-3" role="alert">
@@ -82,9 +83,17 @@
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text">📚</span>
                             <textarea class="form-control" aria-label="With textarea"
-                                placeholder="Digite a bio do cliente em poucas palavras" name="bio" id="bio"></textarea>
+                                placeholder="Digite a bio do cliente em poucas palavras" name="bio" id="bio"
+                                required></textarea>
                         </div>
                     </div>
+                    <div class="mb-3" role="alert">
+                        <label for="photo" class="form-label">Foto do cliente(OPCIONAL)</label>
+                        <div class="input-group flex-nowrap">
+                            <input type="file" class="form-control" id="photo" name="photo">
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
             </div>

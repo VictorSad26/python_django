@@ -44,4 +44,4 @@ def person_delete(request, id):
     if request.method == "POST":
         cliente.delete()
         return redirect("person_list")
-    return render(request, "confirm_delete.html", {"cliente": cliente})
+    return render(request, "clientes.html", {"cliente": cliente})

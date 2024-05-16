@@ -1,3 +1,11 @@
+.delete-person{
+        color: black;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 10px;
+}
+
 .table-clientes{
     border-radius: 15px;
     overflow: hidden;
