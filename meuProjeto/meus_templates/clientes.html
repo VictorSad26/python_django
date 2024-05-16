@@ -1,9 +1,38 @@
-{% extends 'base.html' %}
-{% block title %}Clientes{% endblock %}
-{% block main %}
+{% load static %}
 
-<div class="list-group-item-custom">
-    <div class="container list-group-item-custom">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="{% static 'icons/icon-login.svg' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/clientes/lista-clientes.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <title>Lista de Clientes</title>
+</head>
+
+
+<header data-bs-theme="dark">
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="{%url 'home' %}" class="navbar-brand d-flex align-items-center">
+                <i class="bi bi-house">People Management</i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="container">
         <div class="d-flex justify-content-between align-items-center my-4">
             <h1 class="roboto-thin">Lista de Clientes</h1>
             <form method="post" action="{% url 'logout' %}">
@@ -11,37 +40,159 @@
                 <input type="submit" value="Sair" class="btn btn-primary">
             </form>
         </div>
-        <div class="list-group">
-            {% for cliente in request.user.clientes.all %}
-            <div class="list-group-item ">
-                <div class="d-flex align-items-start justify-content-between">
-                    <div>
-                        <h2 class="mb-1">{{ cliente.first_name }} {{ cliente.last_name }}</a></h2>
-                        <p class="mb-1">Idade: {{ cliente.age }}</p>
-                        <p class="mb-1">Salário: {{ cliente.salary }}</p>
-                        <p class="mb-1">Bio: {{ cliente.bio }}</p>
+        <table class="table table-striped table-hover table-clientes">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Salário</th>
+                    <th>Bio</th>
+                    <th>Foto</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in request.user.clientes.all %}
+                <tr>
+                    <td>{{ cliente.first_name }} {{ cliente.last_name }}</td>
+                    <td>{{ cliente.age }}</td>
+                    <td>💸 {{ cliente.salary }}</td>
+                    <td>{{ cliente.bio }}</td>
+                    <td>
                         {% if cliente.photo %}
-                        <p class="mb-1">
-                            Foto:
-                            <a href="{{ cliente.photo.url }}" target="_blank" class="btn btn-info">
-                                Abrir imagem
-                            </a>
-                        </p>
+                        <img src="{{ cliente.photo.url }}" alt="Foto do cliente" style="width: 50px; height: 50px;">
                         {% else %}
-                        <p class="mb-1">Nenhuma foto disponível</p>
+                        Nenhuma foto disponível
                         {% endif %}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#editModal{{cliente.id}}">EDITAR</button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal{{cliente.id}}">DELETAR</button>
+                    </td>
+                    <div class="modal fade" id="editModal{{cliente.id}}" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel">Editar Cliente</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form method="post" action="{% url 'person_update' cliente.id %}"
+                                        enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <!-- Aqui você pode colocar os campos do formulário para editar o cliente -->
+                                        <!-- Lembre-se de preencher os campos com os dados do cliente -->
+                                        <div class="mb-3" role="alert">
+                                            <label for="last_name" class="form-label">Nome do cliente</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">👤</span>
+                                                <input type="text" class="form-control" id="first_name"
+                                                    name="first_name" value="{{ cliente.first_name }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" role="alert">
+                                            <label for="last_name" class="form-label">Sobrenome do cliente</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">👤</span>
+                                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                                    value="{{ cliente.last_name }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" role="alert">
+                                            <label for="age" class="form-label">Idade do cliente</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">🔞</span>
+                                                <input type="number" class="form-control" id="age" name="age"
+                                                    value="{{ cliente.age }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" role="alert">
+                                            <label for="salary" class="form-label">Salário do cliente</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">💸</span>
+                                                <input type="number" class="form-control" id="salary" name="salary"
+                                                    value="{{ cliente.salary|floatformat}}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" role="alert">
+                                            <label for="bio" class="form-label">Bio do cliente</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">📚</span>
+                                                <input type="text" class="form-control" id="bio" name="bio"
+                                                    value="{{ cliente.bio }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" role="alert">
+                                            <label for="photo" class="form-label">Foto do cliente(OPCIONAL)</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text">📚</span>
+                                                <input type="file" class="form-control" id="photo" name="photo">
+                                                {% if cliente.photo %}
+                                                <a href="{{ cliente.photo.url }}" class="btn btn-info"
+                                                    target="_blank">FOTO ATUAL</a>
+                                                {% else %}
+                                                Nenhuma foto disponível
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Adicione mais campos conforme necessário -->
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </form>
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <a href="{% url 'person_delete' cliente.id %}" class="btn btn-danger mt-3">DELETAR</a>
-                        <a href="{% url 'person_update' cliente.id %}" class="btn btn-warning mt-3">EDITAR</a>
+
+
+
+
+
+                    <div class="modal fade" id="deleteModal{{cliente.id}}" tabindex="-1"
+                        aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Confirmar Deleção</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Tem certeza que deseja deletar o cliente?
+                                    <p class="delete-person">{{ cliente.first_name }} {{ cliente.last_name }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <form action="{% url 'person_delete' cliente.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">DELETAR</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="list-group-item">Nenhum cliente encontrado.</div>
-            {% endfor %}
-        </div>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <a href="{% url 'person_new' %}" class="btn btn-primary mt-3">Criar Novo Cliente</a>
     </div>
-</div>
-{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
