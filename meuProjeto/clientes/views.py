@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .models import Cliente
 from .forms import ClienteForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -25,12 +26,16 @@ def person_new(request):
 
 @login_required
 def person_update(request, id):
-    cliente = get_object_or_404(Cliente, pk=id)
+    cliente = get_object_or_404(Cliente, id=id)
     form = ClienteForm(request.POST or None, request.FILES or None, instance=cliente)
     if form.is_valid():
         form.save()
         return redirect("person_list")
-    return render(request, "form_cliente.html", {"form": form})
+    else:
+        messages.error(
+            request, "O cliente não foi atualizado. Por favor, corrija os erros."
+        )
+    return render(request, "clientes.html", {"form": form, "cliente": cliente})
 
 
 @login_required

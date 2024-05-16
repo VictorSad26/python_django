@@ -13,6 +13,6 @@ def create_superuser(request):
         password = request.POST["password"]
         email = request.POST["email"]
         User.objects.create_superuser(username=username, password=password, email=email)
-        return redirect("home")
+        return redirect("login")
     else:
         return render(request, "cadastro.html")
