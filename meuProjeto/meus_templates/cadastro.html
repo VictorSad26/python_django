@@ -19,7 +19,7 @@
 <header data-bs-theme="dark">
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a href="{%url 'home' %}" class="navbar-brand d-flex align-items-center">
+            <a data-qa="btn-home" href="{%url 'home' %}" class="navbar-brand d-flex align-items-center">
                 <i class="bi bi-house">People Management</i>
             </a>
         </div>
@@ -35,6 +35,13 @@
             </div>
             <div class="col-12 col-md-6 col-lg-4 card-login mx-3 mb-3 mt-md-0">
                 <!-- create_superuser.html -->
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
                 <form method="post" class="form-group">
                     {% csrf_token %}
 
@@ -47,24 +54,25 @@
                     <label for="username" class="form-label">Username:</label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text">👤</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                            aria-describedby="addon-wrapping" name="username" id="username">
+                        <input data-qa="username" type="text" class="form-control" placeholder="Username"
+                            aria-label="Username" aria-describedby="addon-wrapping" name="username" id="username">
                     </div>
                     <label for="email" class="form-label">Email:</label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text">@</span>
-                        <input id="email" type="email" name="email" required class="form-control"
+                        <input data-qa="email" id="email" type="email" name="email" class="form-control"
                             placeholder="Digite seu e-mail">
                     </div>
                     <label for="password" class="form-label">Senha:</label>
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text">🔑</span>
-                        <input id="password" type="password" name="password" required class="form-control"
+                        <input data-qa="password" id="password" type="password" name="password" class="form-control"
                             placeholder="Senha">
                     </div>
 
-                    <button type="submit" class="btn btn-success mt-3">Cadastrar</button>
-                    <a href="{% url 'login' %}" class="btn btn-outline-warning mt-3">Voltar para Login</a>
+                    <button data-qa="cadastrar" type="submit" class="btn btn-success mt-3">Cadastrar</button>
+                    <a data-qa="btn-back-login" href="{% url 'login' %}" class="btn btn-outline-warning mt-3">Voltar
+                        para Login</a>
                 </form>
             </div>
         </div>
