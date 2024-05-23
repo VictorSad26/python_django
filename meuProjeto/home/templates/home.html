@@ -25,7 +25,8 @@
                 <a href="{%url 'home' %}" class="navbar-brand d-flex align-items-center">
                     <i class="bi bi-house"> People Management</i>
                 </a>
-                <a href="{%url 'login' %}" class="navbar-brand d-flex align-items-center mb-1">
+                <a data-qa="btn-login-navbar" href="{%url 'login' %}"
+                    class="navbar-brand d-flex align-items-center mb-1">
                     <i class="bi bi-fingerprint"> Login</i>
                 </a>
             </div>
@@ -42,8 +43,10 @@
                         contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply
                         skip over it entirely.</p>
                     <p>
-                        <a href="{%url 'login' %}" class="btn btn-primary my-2">Faça login agora mesmo</a>
-                        <a href="{%url 'cadastro' %}" class="btn btn-secondary my-2">Cadastre-se</a>
+                        <a data-qa="btn-do-login" href="{%url 'login' %}" class="btn btn-primary my-2">Faça login agora
+                            mesmo</a>
+                        <a data-qa="btn-do-register" href="{%url 'cadastro' %}"
+                            class="btn btn-secondary my-2">Cadastre-se</a>
                     </p>
                 </div>
             </div>
