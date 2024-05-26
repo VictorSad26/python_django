@@ -49,19 +49,19 @@
                         <label for="username" class="form-label">Usuário</label>
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text">👤</span>
-                            <input type="text" class="form-control" placeholder="Usuario" aria-label="Username"
-                                aria-describedby="addon-wrapping" name="username" id="username">
+                            <input data-qa="username" type="text" class="form-control" placeholder="Usuario"
+                                aria-label="Username" aria-describedby="addon-wrapping" name="username" id="username">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Senha</label>
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text">🔑</span>
-                            <input type="password" class="form-control" placeholder="Password" aria-label="password"
-                                aria-describedby="addon-wrapping" name="password" id="password">
+                            <input data-qa="password" type="password" class="form-control" placeholder="Password"
+                                aria-label="password" aria-describedby="addon-wrapping" name="password" id="password">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button data-qa="btn-login" type="submit" class="btn btn-primary">Entrar</button>
                     <a href="{% url 'cadastro' %}" class="btn btn-secondary">Cadastre-se</a>
 
                     <a href="{% url 'home' %}" class="btn btn-outline-light">
