@@ -20,6 +20,7 @@ def person_new(request):
         cliente = form.save(commit=False)
         cliente.user = request.user
         cliente.save()  # Salva no banco de dados
+        messages.success(request, "Cliente cadastrado com sucesso!")
         return redirect("person_list")
     return render(request, "form_cliente.html", {"form": form})
 
