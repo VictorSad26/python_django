@@ -31,6 +31,7 @@ def person_update(request, id):
     form = ClienteForm(request.POST or None, request.FILES or None, instance=cliente)
     if form.is_valid():
         form.save()
+        messages.success(request, "Cliente atualizado com sucesso!")
         return redirect("person_list")
     else:
         messages.error(
