@@ -8,7 +8,7 @@ class Cliente(models.Model):
     last_name = models.CharField(max_length=30)
     age = models.PositiveIntegerField()
     salary = models.FloatField()
-    bio = models.TextField(max_length=30)
+    bio = models.TextField(max_length=100)
     photo = models.ImageField(upload_to="clientes_photos", null=True, blank=True)
 
     def __str__(self):

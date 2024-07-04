@@ -38,18 +38,18 @@
             <h1 class="roboto-thin">Lista de Clientes</h1>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
-                <input type="submit" value="Sair" class="btn btn-primary">
+                <input data-qa="btn-sair" type="submit" value="Sair" class="btn btn-primary">
             </form>
         </div>
         <table data-qa="table-clientes" class="table table-striped table-hover table-clientes">
             <thead class="table-dark">
                 <tr>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Salário</th>
-                    <th>Bio</th>
-                    <th>Foto</th>
-                    <th>Ações</th>
+                    <th data-qa="coluna-nome">Nome</th>
+                    <th data-qa="coluna-idade">Idade</th>
+                    <th data-qa="coluna-salario">Salário</th>
+                    <th data-qa="coluna-bio">Bio</th>
+                    <th data-qa="coluna-foto">Foto</th>
+                    <th data-qa="coluna-acao">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -146,6 +146,7 @@
 
 
                                         <!-- Adicione mais campos conforme necessário -->
+
                                         <button data-qa="btn-salvar" type="submit"
                                             class="btn btn-primary">Salvar</button>
                                     </form>
@@ -177,8 +178,9 @@
                                         data-bs-dismiss="modal">Cancelar</button>
                                     <form action="{% url 'person_delete' cliente.id %}" method="post">
                                         {% csrf_token %}
+
                                         <button data-qa="btn-deletar" type="submit"
-                                            class="btn btn-danger">DELETAR</button>
+                                            class="btn btn-danger">DELETAR</button>x`
                                     </form>
                                 </div>
                             </div>
@@ -198,6 +200,7 @@
                 {% endfor %}
             </tbody>
         </table>
+
         <a data-qa="btn-adicionar-cliente" href="{% url 'person_new' %}"
             class="btn btn-primary mt-3 btn-new-client">Criar Novo
             Cliente</a>
