@@ -27,7 +27,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          screen -r django
-          sudo pkill -f runserver
+          tmux send-keys -t django C-c
           git pull
-          nohup python3 manage.py runserver 0.0.0.0:8000
+          tmux new-session -d -s django 'python3 manage.py runserver 0.0.0.0:8000'
