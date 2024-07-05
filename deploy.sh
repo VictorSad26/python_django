@@ -10,8 +10,7 @@ git pull origin main
 cd python_django
 source venv/bin/activate
 cd meuProjeto
-screen -S django 
-python3 manage.py runserver 0.0.0.0:8000
+screen -S django -dm bash -c 'python3 manage.py runserver 0.0.0.0:8000'
 
 # Opcional: Aguardar alguns segundos para o servidor iniciar
 sleep 10
