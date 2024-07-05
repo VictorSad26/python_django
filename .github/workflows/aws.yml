@@ -11,15 +11,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Copy files
-      uses: appleboy/scp-action@master
-      with:
-        host: "ec2-3-145-119-66.us-east-2.compute.amazonaws.com"
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        source: "."
-        target: "/home/ubuntu"
-
     - name: Execute deploy script
       uses: appleboy/ssh-action@master
       with:
@@ -27,7 +18,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          screen -r django
-          sudo pkill -f runserver
+          tmux send-keys -t django C-c
           git pull
-          python3 manage.py runserver 0.0.0.0:8000
+          tmux new-session -d -s django 'python3 manage.py runserver 0.0.0.0:8000'
