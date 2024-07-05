@@ -18,7 +18,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         source: "."
-        target: "/home/ubuntu"
+        target: "/home/ubuntu/python_django"
 
     - name: Execute deploy script
       uses: appleboy/ssh-action@master
@@ -27,6 +27,5 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          tmux send-keys -t django C-c
-          git pull
-          tmux new-session -d -s django 'python3 manage.py runserver 0.0.0.0:8000'
+          tchmod +x /home/ubuntu/python_django/deploy.sh
+          /home/ubuntu/python_django/deploy.sh
