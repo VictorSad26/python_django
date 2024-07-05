@@ -27,5 +27,5 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          tchmod +x /home/ubuntu/python_django/deploy.sh
+          chmod +x /home/ubuntu/python_django/deploy.sh
           /home/ubuntu/python_django/deploy.sh
